@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import Button from './Components/Button';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+function onButtonPress(): void {
+    alert('Pressed!');
+}
+
+function App() {
+    const [counter, setCounter] = useState(0);
+
+    function incrementCounter(): void {
+        setCounter(counter + 1);
+    }
+
+    function resetCounter(): void {
+        setCounter(0);
+    }
+
+    return (
+        <View style={styles.container}>
+            <Text>{counter}</Text>
+            <Button color="blue" text="+" onPress={incrementCounter} />
+            <Button color="blue" text="Reset" onPress={resetCounter} />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
+
+export default App;
